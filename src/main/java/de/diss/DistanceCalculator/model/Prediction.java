@@ -6,11 +6,11 @@ import com.vividsolutions.jts.geom.Coordinate;
 
 public class Prediction {
 
-	private int id;
+	private String id;
 
 	private ArrayList<Coordinate> predictedTrack;
 
-	public Prediction(int id, ArrayList<Coordinate> predictedTrack) {
+	public Prediction(String id, ArrayList<Coordinate> predictedTrack) {
 		this.setId(id);
 		this.setPredictedTrack(predictedTrack);
 	}
@@ -23,11 +23,11 @@ public class Prediction {
 		this.predictedTrack = predictedTrack;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

@@ -25,17 +25,19 @@ public class Calculator {
 
 		ArrayList<EvaluationObject> evalObjs = new ArrayList<EvaluationObject>();
 
-		for (HistoricTrack historicTrack : historicTracks) {
+		for (int i = 0; i < historicTracks.size(); i++) {
 
-			Coordinate[] histArray = new Coordinate[historicTrack.getTrackPoints().size()];
+			Prediction predictedTrack = predictions.get(i);
 
-			for (int i = 0; i < histArray.length; i++) {
-				histArray[i] = historicTrack.getTrackPoints().get(i);
+			Coordinate[] predArray = new Coordinate[predictedTrack.getPredictedTrack().size()];
+
+			for (int j = 0; j < predArray.length; j++) {
+				predArray[j] = predictedTrack.getPredictedTrack().get(j);
 			}
 
-			LineString lineString = geoFactory.createLineString(histArray);
+			LineString lineString = geoFactory.createLineString(predArray);
 
-			ArrayList<Double> distances = calculateDistances(lineString, historicTracks.get(0));
+			ArrayList<Double> distances = calculateDistances(lineString, historicTracks.get(i));
 
 			Collections.sort(distances);
 
@@ -44,7 +46,7 @@ public class Calculator {
 			double max = Collections.max(distances);
 			double min = Collections.min(distances);
 
-			evalObjs.add(new EvaluationObject(historicTrack.getId(), average, min, max, median));
+			evalObjs.add(new EvaluationObject("track" + predictedTrack.getId(), average, min, max, median));
 
 		}
 

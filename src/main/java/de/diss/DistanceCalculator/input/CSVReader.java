@@ -38,8 +38,8 @@ public class CSVReader {
 								new Coordinate(Double.valueOf(predTrackLine[0]), Double.valueOf(predTrackLine[1])));
 					}
 				}
-
-				predictionList.add(new Prediction(id, coordinates));
+				String filename = file.getPath().substring(16, file.getPath().length() - 4);
+				predictionList.add(new Prediction(filename, coordinates));
 				id++;
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
